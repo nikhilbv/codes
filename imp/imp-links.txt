@@ -88,3 +88,6 @@ https://towardsdatascience.com/tutorial-build-a-lane-detector-679fd8953132
 
 Open source self driving cars datasets -
 https://blog.cambridgespark.com/50-free-machine-learning-datasets-self-driving-cars-d37be5a96b28
+
+Haroopad - 
+https://linuxg.net/how-to-install-haroopad-0-12-2-on-ubuntu-debian-and-derivative-systems/
