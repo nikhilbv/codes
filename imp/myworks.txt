@@ -1,20 +1,28 @@
-MazePCDViewer-
-MazePCDViewer is a web-based internal tool to visualize a massive amount of point cloud data. This tool allows the users to share their data sets with clients or the public without the need to install any third-party applications and transfer huge amounts of data in advance. The focus on large point clouds, and a  ariety of measuring tools, also allows users to use Potree to look at, analyze and validate raw point cloud data, without the need for a time-intensive and
+MazePCDViewer(June,2018 - October,2018) -
+* MazePCDViewer is a web-based internal tool to visualize a massive amount of point cloud data. 
+* This tool allows the users to share their data sets with clients or the public without the need to install any third-party applications and transfer huge amounts of data in advance. 
+The focus on large point clouds, and a  ariety of measuring tools, also allows users to use Potree to look at, analyze and validate raw point cloud data, without the need for a time-intensive and
 potentially costly meshing step.
+* Potree converter to convert raw PCD to potree format i.e., *.js
 
-Slope and curvature - 
-To calculate the slope and curvature of a road using the raw GPS data.
-Created a node js package of slope and curvature
+Slope and curvature(November,2018 - January,2019) - 
+* Calculate the slope and curvature of a road using the raw GPS data.
+* Created a node js package(currently private) of slope and curvature
 
-Autocut - 
-Built a video route using the GPS data and photos collected by gaze
+Autocut(February,2019 - 8th March,2019) - 
+Built a video route using the GPS(lat lon) data and photos collected by Gaze(Mobile maping System)(EGO Vehicle).
 
-AIMLDL-
-* Matplotlib
-* YAML creating
+AIMLDL(11th March,2019 - Till date) -
+* Matplotlib(Visualize the stats of dataset i.e., no of labels, no on annotations per label, no of images per label)
+* Numpy (Merging 2 or more images, Binary masks)
+* YAML creating(Creating config file for training in *.yml file)
 * Training
 * Predicting
 * Evaluating
-* Hyperparameters
-* Depth Map
-* 3D Construction
+* Hyperparameters tuning
+* Develop automation scripts to run train, evaluate and predict(batch_train.sh, batch_evaluate.sh, batch_predict.sh)
+* Flask - Python web application framework to host a DNN trained model in web browser and interact through API. 
+* Merging of all the annotation jobs.
+
+resume - 
+https://www.livecareer.com/resume-search/r/machine-learning-engineer-d282aa9ca3c94cbaa70594772952db9b
