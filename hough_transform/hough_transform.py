@@ -78,7 +78,7 @@ def show_hough_line(img, accumulator, thetas, rhos, save_path=None):
 
 
 if __name__ == '__main__':
-    imgpath = '/aimldl-cod/practice/nikhil/binary_mask_image.png'
+    imgpath = '/aimldl-cod/practice/nikhil/hough_transform/binary_mask_image.png'
     img = imageio.imread(imgpath)
     if img.ndim == 3:
         img = rgb2gray(img)

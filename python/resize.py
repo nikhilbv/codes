@@ -2,7 +2,7 @@
 from PIL import Image
 import os, sys
 
-path = "/home/nikhil/Documents/advanced-lane-detection/test-img/"
+path = "/home/nikhil/Documents/images/"
 dirs = os.listdir( path )
 
 print(dirs)
