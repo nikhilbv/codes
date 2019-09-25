@@ -2,11 +2,11 @@ import json
 import os
 import cv2
 
-#root_dir = '/home/nikhil/Documents/annotations/'
-#json_file = 'ann.json'
-root_dir = '/aimldl-dat/data-public/tusimple-sub/train_set/'
+root_dir = '/home/nikhil/Documents/annotations/'
+json_file = 'ann.json'
+# root_dir = '/aimldl-dat/data-public/tusimple-sub/train_set/'
 #json_file = 'label_data_0313.json'
-json_file = 'label_data_0601.json'
+# json_file = 'label_data_0601.json'
 print(root_dir)
 print(json_file)
 
