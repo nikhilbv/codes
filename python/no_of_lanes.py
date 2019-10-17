@@ -69,4 +69,3 @@ def show_no_of_lanes(json_file):
 if __name__ == '__main__':
   args = init_args()
   show_no_of_lanes(args.json_file)
-

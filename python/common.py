@@ -164,6 +164,12 @@ def get_write_to_file_fn(file_ext):
     writefn = None
   return writefn
 
+def loadcfg(cfgfile):
+  ## Configurations
+  datacfg = yaml_load(cfgfile)
+  # log.info("datacfg: {}".format(datacfg))
+  return datacfg
+
 
 def mkdir_p(path):
   """
