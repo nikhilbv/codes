@@ -164,7 +164,6 @@ def get_write_to_file_fn(file_ext):
     writefn = None
   return writefn
 
-
 def loadcfg(cfgfile):
   ## Configurations
   datacfg = yaml_load(cfgfile)
@@ -301,13 +300,13 @@ def merge_json(files):
         d = json.load(fr)
         k = list(d.keys())
         v = list(d.values())
-        log.debug("len(k), len(v): {}, {}".format(len(k), len(v)))
+        log.info("len(k), len(v): {}, {}".format(len(k), len(v)))
         K += k
         V += v
 
     # log.info("K: {}".format(K))
-    log.debug("K length: {}".format(len(K)))
-    log.debug("V length: {}".format(len(V)))
+    log.info("K length: {}".format(len(K)))
+    log.info("V length: {}".format(len(V)))
 
     ## mergedjson is not util later point qw K,V provides for greater flexibility
     ## and let the caller take care of merging using zip
