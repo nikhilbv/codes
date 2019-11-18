@@ -6,7 +6,8 @@ import tqdm
 
 # from_path = "/aimldl-dat/data-gaze/AIML_Database/lnd-011019_165046/images/"
 # from_path = "/aimldl-dat/data-gaze/AIML_Database/lnd-101019_103444/images/"
-from_path = "/aimldl-dat/data-gaze/AIML_Database/lnd-151019_104101/images/"
+# from_path = "/aimldl-dat/data-gaze/AIML_Database/lnd-151019_104101/images/"
+from_path = "/aimldl-dat/data-public/culane-samples/"
 print("from_path : {}".format(from_path))
 dirs = os.listdir( from_path )
 to_path = os.path.join(from_path,'resized')
