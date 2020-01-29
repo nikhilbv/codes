@@ -7,8 +7,12 @@ class LaneEval(object):
   lr = LinearRegression()
   pixel_thresh = 20
   # pt_thresh = 0.85
+<<<<<<< HEAD
   # pt_thresh = 0.50
   pt_thresh = 0.30
+=======
+  pt_thresh = 0.50
+>>>>>>> 8f7ff93c6f45120f31c13b2ab3c22585f590bdf8
 
   @staticmethod
   def get_angle(xs, y_samples):
@@ -99,6 +103,7 @@ class LaneEval(object):
     if ann_in_pred > ann_in_gt:
       # fp = ann_in_gt - matched
       fp = ann_in_pred - matched
+<<<<<<< HEAD
       print(fp)
     
     # if len(gtt) > 4 and fn > 0:
@@ -107,6 +112,15 @@ class LaneEval(object):
     
     # if ann_in_gt > 4:
     #   s -= min(line_accs)
+=======
+    
+    if len(gtt) > 4 and fn > 0:
+      fn -= 1
+    s = sum(line_accs)
+    
+    if ann_in_gt > 4:
+      s -= min(line_accs)
+>>>>>>> 8f7ff93c6f45120f31c13b2ab3c22585f590bdf8
     
     # fields = ['image_name', 'len_of_gt', 'len_of_pred','matched','fp','fn']
     # row = [raw_file,len(gt),len(pred),matched,fp,fn]
@@ -116,7 +130,11 @@ class LaneEval(object):
     #   writer.writerow(fields)
     #   writer.writerows(rows)
     # return ann_in_gt,ann_in_pred,len(gt),len(pred),matched,fp,fn,s / max(min(4.0, len(gt)), 1.), fp / len(pred) if len(pred) > 0 else 0., fn / max(min(len(gt), 4.) , 1.)
+<<<<<<< HEAD
     return ann_in_gt,ann_in_pred,len(gt),len(pred),matched,fp,fn, s / ann_in_gt, fp / ann_in_pred if ann_in_pred > 0 else 0., fn / max(min(ann_in_gt, 4.) , 1.)
+=======
+    return ann_in_gt,ann_in_pred,len(gt),len(pred),matched,fp,fn, s / max(min(4.0, ann_in_gt), 1.), fp / ann_in_pred if ann_in_pred > 0 else 0., fn / max(min(ann_in_gt, 4.) , 1.)
+>>>>>>> 8f7ff93c6f45120f31c13b2ab3c22585f590bdf8
 
   @staticmethod
   def bench_one_submit(pred_file, gt_file):
@@ -130,7 +148,10 @@ class LaneEval(object):
     if len(json_gt) != len(json_pred):
       raise Exception('We do not get the predictions of all the test tasks')
     gts = {l['raw_file']: l for l in json_gt}
+<<<<<<< HEAD
     print("gts : {}".format(len(gts)))
+=======
+>>>>>>> 8f7ff93c6f45120f31c13b2ab3c22585f590bdf8
     accuracy, fp, fn = 0., 0., 0.
     no_of_ann_in_pred = 0
     no_of_ann_in_gt = 0
@@ -211,5 +232,9 @@ if __name__ == '__main__':
   #   print(e.message)
   #   sys.exit(e.message)
 
+<<<<<<< HEAD
   print(LaneEval.bench_one_submit(sys.argv[1], sys.argv[2]))
+=======
+  LaneEval.bench_one_submit(sys.argv[1], sys.argv[2])
+>>>>>>> 8f7ff93c6f45120f31c13b2ab3c22585f590bdf8
 
