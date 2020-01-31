@@ -12,8 +12,9 @@ __version__ = '1.0'
 
 """
 # Usage
+# glob.glob("*.png") in images directory
+# json reindent in sublime text and save as json
 # python placebo.py --json_file <json_file>
-# python placebo.py --json_file path/to/images_list
 """
 
 import argparse
@@ -36,8 +37,13 @@ APP_ROOT_DIR = os.getenv('AI_APP')
 if APP_ROOT_DIR not in sys.path:
   sys.path.append(APP_ROOT_DIR)
 
+
+ANNON_ROOT_DIR = os.path.join(os.getenv('AI_APP'),'annon')
+if ANNON_ROOT_DIR not in sys.path:
+  sys.path.append(ANNON_ROOT_DIR)
+
 from _annoncfg_ import appcfg
-import annonutils
+import annonutils 
 import common
 
 def get_image(cfg,json_file):
@@ -59,7 +65,6 @@ def get_image(cfg,json_file):
   log.info("to_path: {}".format(to_path))
 
   save_path = os.path.join(to_path,'lnd-'+timestamp)
-  # log.info("save_path: {}".format(save_path))
   common.mkdir_p(save_path)
 
   images_save_path = os.path.join(save_path,'images')
