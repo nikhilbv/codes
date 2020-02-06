@@ -2,6 +2,8 @@ import numpy as np
 from sklearn.linear_model import LinearRegression
 import ujson as json
 import csv
+import os
+import cv2
 
 class LaneEval(object):
   lr = LinearRegression()
@@ -67,7 +69,7 @@ class LaneEval(object):
     
     # print("gtt inside bench : {}".format(gtt))
 
-    angles = [LaneEval.get_angle(np.array(x_gts), np.array(y_samples)) for x_gts in gtt]
+    angles = [LaneEval.get_angle(np.array(x_gts), np.array(y_samples)) for x_gts in gt]
     # print("angles : {}".format(angles))
     threshs = [LaneEval.pixel_thresh / np.cos(angle) for angle in angles]
     # print("threshs : {}".format(threshs))
@@ -97,9 +99,9 @@ class LaneEval(object):
       else:
         matched += 1
       line_accs.append(max_acc)
-    if ann_in_pred > ann_in_gt:
-      # fp = ann_in_gt - matched
-      fp = ann_in_pred - matched
+    # if ann_in_pred > ann_in_gt:
+    #   # fp = ann_in_gt - matched
+    #   fp = ann_in_pred - matched
     
     # if len(gtt) > 4 and fn > 0:
     #   fn -= 1
@@ -130,6 +132,7 @@ class LaneEval(object):
   def bench_one_submit(pred_file, gt_file):
     # print("gt_file : {}".format(gt_file))
     # print("pred_file : {}".format(pred_file))
+    path = '/aimldl-dat/logs/testing/evaluate'
     try:
       json_pred = [json.loads(line) for line in open(pred_file).readlines()]
     except BaseException as e:
@@ -148,6 +151,14 @@ class LaneEval(object):
         # raise Exception('raw_file or lanes or run_time not in some predictions.')
         raise Exception('raw_file or lanes not in some predictions.')
       raw_file = pred['raw_file']
+      print("raw_file : {}".format(raw_file))
+      image_name = raw_file.split('/')[-1]
+      img_path = os.path.join(path, image_name)
+      # print("images are saved in : {}".format(img_path))
+      img = cv2.imread(raw_file)
+      if img is None:
+        continue
+
       pred_lanes = pred['lanes']
       for lane_p in pred_lanes:
         lane_p_id_found=False
@@ -159,7 +170,16 @@ class LaneEval(object):
             break
         if lane_p_id_found:
           no_of_ann_in_pred += 1
-    # run_time = pred['run_time']
+      y_samples = pred['v_samples']
+
+      pred_lanes_vis = [[(x, y) for (x, y) in zip(lane, y_samples) if x >= 0] for lane in pred_lanes]
+      img_vis = img.copy()
+
+      for lane in pred_lanes_vis:
+        cv2.polylines(img_vis, np.int32([lane]), isClosed=False, color=(0,0,255), thickness=3)
+        # cv2.imwrite(img_path, img_vis)
+
+      # run_time = pred['run_time']
       if raw_file not in gts:
         raise Exception('Some raw_file from your predictions do not exist in the test tasks.')
       gt = gts[raw_file]
@@ -171,10 +191,17 @@ class LaneEval(object):
             continue
           else:
             lane_g_id_found=True
-            break
+            break 
         if lane_g_id_found:
           no_of_ann_in_gt += 1
       y_samples = gt['h_samples']
+
+      gt_lanes_vis = [[(y, x) for (x, y) in zip(lane, y_samples) if x >= 0] for lane in gt_lanes]
+      # img_vis = img.copy()
+
+      for lane in gt_lanes_vis:
+        cv2.polylines(img_vis, np.int32([lane]), isClosed=False, color=(0,255,0), thickness=3)
+        cv2.imwrite(img_path, img_vis)
       # print(LaneEval.bench(pred_lanes, gt_lanes, y_samples))
       try:
           # a, p, n = LaneEval.bench(pred_lanes, gt_lanes, y_samples, run_time)
