@@ -31,7 +31,7 @@ def remove_ann(json_file):
   log.info("json_file : {}".format(json_file))
   new_json = []
   ## annotations below this points will be removed
-  dist = 26
+  dist = 30
   
   timestamp = ("{:%d%m%y_%H%M%S}").format(datetime.datetime.now())
 
@@ -43,6 +43,7 @@ def remove_ann(json_file):
      
       json_line = json_lines[line_index]
       sample = json.loads(json_line)
+      lanes = sample['lanes']
 
       # Number of lanes
       for lane in lanes:
@@ -60,7 +61,7 @@ def remove_ann(json_file):
   json_basepath = common.getBasePath(json_file)
   json_name = json_file.split('/')[-1]
   new_json_name = json_name.split('.')[0]
-  with open(json_basepath+'/'+new_json_name+'-'+timestamp+'.json','w') as outfile:
+  with open(json_basepath+'/'+new_json_name+'-filtered-'+timestamp+'.json','w') as outfile:
     for items in new_json:
       # log.info("items : {}".format(items))
       json.dump(items, outfile)
