@@ -8,10 +8,7 @@ import cv2
 class LaneEval(object):
   lr = LinearRegression()
   pixel_thresh = 20
-  # pt_thresh = 0.85
-  # pt_thresh = 0.50
-  pt_thresh = 0.30
-  pt_thresh = 0.50
+  pt_thresh = 0.85
 
   @staticmethod
   def get_angle(xs, y_samples):
@@ -151,7 +148,7 @@ class LaneEval(object):
         # raise Exception('raw_file or lanes or run_time not in some predictions.')
         raise Exception('raw_file or lanes not in some predictions.')
       raw_file = pred['raw_file']
-      print("raw_file : {}".format(raw_file))
+      # print("raw_file : {}".format(raw_file))
       image_name = raw_file.split('/')[-1]
       img_path = os.path.join(path, image_name)
       # print("images are saved in : {}".format(img_path))
@@ -172,7 +169,7 @@ class LaneEval(object):
           no_of_ann_in_pred += 1
       y_samples = pred['v_samples']
 
-      pred_lanes_vis = [[(x, y) for (x, y) in zip(lane, y_samples) if x >= 0] for lane in pred_lanes]
+      pred_lanes_vis = [[(y, x) for (x, y) in zip(lane, y_samples) if x >= 0] for lane in pred_lanes]
       img_vis = img.copy()
 
       for lane in pred_lanes_vis:
