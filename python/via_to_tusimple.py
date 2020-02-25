@@ -43,10 +43,19 @@ def via_to_tusimple(json_file):
       lanes = []
       rawfile = val['filename']
       r = val["regions"]
+      resize = 1.5
       for j in r:
         lane = []
-        lane.append(j["shape_attributes"]["all_points_x"])
-        lane.append(j["shape_attributes"]["all_points_y"])
+        x_axis = j["shape_attributes"]["all_points_x"]
+        # print("x_axis : {}".format(x_axis))
+        resized_x_axis = [int(x / resize) for x in x_axis] 
+        # print("resized_x_axis : {}".format(resized_x_axis))
+        y_axis = j["shape_attributes"]["all_points_y"]
+        # print("y_axis : {}".format(y_axis))
+        resized_y_axis = [int(y / resize) for y in y_axis] 
+        # print("resized_y_axis : {}".format(resized_y_axis))
+        lane.append(resized_x_axis)
+        lane.append(resized_y_axis)
         lanes.append(lane)
       tusimple["lanes"] = lanes
       tusimple["raw_file"] = rawfile
