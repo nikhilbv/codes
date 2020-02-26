@@ -81,7 +81,7 @@ def process(json_file):
           point_w_begin = lane[1][k]
           # print("point_w_begin",point_w_begin)
 
-          cv2.circle(im, (int(point_h_begin/1.5),int(point_w_begin/1.5)), 3, getcolor(i))
+          cv2.circle(im, (int(point_h_begin),int(point_w_begin)), 3, getcolor(i))
           # cv2.circle(im, (point_w_begin,point_h_begin), 3, getcolor(i))
 
       cv2.imshow('image', im)
