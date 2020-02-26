@@ -68,6 +68,8 @@ def via_to_tusimple(json_file):
     for items in new_json:
       json.dump(items, outfile)
       outfile.write('\n')
+  print("Done!!")
+  print("Saved in path -> {}".format(json_basepath+'/'+new_json_name+'-'+timestamp+'.json'))
 
 
 if __name__ == '__main__':
