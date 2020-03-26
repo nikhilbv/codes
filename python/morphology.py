@@ -54,6 +54,6 @@ cv2.imshow('Opening', opening)
 cv2.imshow('Erosion', img_erosion) 
 cv2.imshow('Dilation', img_dilation) 
 cv2.imshow('Edges', edges) 
-cv2.imwrite('edges.jpg',edges)
+# cv2.imwrite('edges.jpg',edges)
 
 cv2.waitKey(0) 
